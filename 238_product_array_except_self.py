@@ -12,3 +12,23 @@ class Solution:
             nums[index] = lv*rv
 
         return nums
+    
+# O(n) time complexity
+# O(1) space complexity
+
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        l = len(nums)
+        result = [1] * l
+
+        prefix = 1
+        for i in range(l):
+            result[i] = prefix
+            prefix *= nums[i]
+        
+        postfix = 1
+        for j in range(l - 1, -1, -1):
+            result[j] *= postfix
+            postfix *= nums[j]
+
+        return result
